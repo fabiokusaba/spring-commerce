@@ -5,7 +5,7 @@ import jakarta.validation.constraints.*;
 import java.math.BigDecimal;
 
 public record ProductRequest(
-        @NotBlank
+        @NotBlank(message = "Esse campo é obrigatório e não deve ser nulo.")
         @Size(min = 3, max = 80)
         String name,
 
