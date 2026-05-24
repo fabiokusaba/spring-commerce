@@ -42,4 +42,10 @@ public class ProductService {
                 .withIgnoreNullValues());
         return repository.findAll(example, pageable);
     }
+
+    public Product update(Long id, ProductRequest request) {
+        Product product = this.findById(id);
+        mapper.update(request, product);
+        return repository.save(product);
+    }
 }

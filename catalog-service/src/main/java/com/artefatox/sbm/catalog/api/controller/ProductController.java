@@ -44,4 +44,12 @@ public class ProductController {
         Page<ProductSummary> response = page.map(mapper::toSummary);
         return ResponseEntity.ok(response);
     }
+
+    @Transactional
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductResponse> update(@PathVariable("id") Long id,
+                                                  @RequestBody @Valid ProductRequest request) {
+        Product product = service.update(id, request);
+        return ResponseEntity.ok(mapper.toResponse(product));
+    }
 }

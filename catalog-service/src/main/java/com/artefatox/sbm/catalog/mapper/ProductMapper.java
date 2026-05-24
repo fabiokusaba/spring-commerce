@@ -5,9 +5,7 @@ import com.artefatox.sbm.catalog.domain.valueobject.ProductFilter;
 import com.artefatox.sbm.catalog.mapper.request.ProductRequest;
 import com.artefatox.sbm.catalog.mapper.response.ProductResponse;
 import com.artefatox.sbm.catalog.mapper.response.ProductSummary;
-import org.mapstruct.Mapper;
-import org.mapstruct.NullValueCheckStrategy;
-import org.mapstruct.ReportingPolicy;
+import org.mapstruct.*;
 
 @Mapper(
         unmappedTargetPolicy = ReportingPolicy.IGNORE,
@@ -18,4 +16,6 @@ public interface ProductMapper {
     ProductResponse toResponse(Product entity);
     ProductSummary toSummary(Product entity);
     Product toFilter(ProductFilter filter);
+    @Mapping(target = "id", ignore = true)
+    Product update(ProductRequest request, @MappingTarget Product entity);
 }
