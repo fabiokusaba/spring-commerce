@@ -48,4 +48,9 @@ public class ProductService {
         mapper.update(request, product);
         return repository.save(product);
     }
+
+    public void delete(Long id) {
+        Product product = this.findById(id);
+        repository.delete(product);
+    }
 }
